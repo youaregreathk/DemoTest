@@ -48,11 +48,10 @@ namespace DemoTest.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<User> Get()
+        public async Task<List<User>> Get()
         {
-            List<User> resultList = _userService.getAllUsers();
+            return await Task.Run(() => _userService.getAllUsers());
 
-            return resultList;
         }
     }
 
