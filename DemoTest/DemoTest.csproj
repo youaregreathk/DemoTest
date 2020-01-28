@@ -7,11 +7,17 @@
 
   <ItemGroup>
     <Folder Include="Services\" />
-    <Folder Include="Models\" />
   </ItemGroup>
 
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\DemoTest.Core\DemoTest.Core.csproj" />
+    <ProjectReference Include="..\DemoTest.Data\DemoTest.Data.csproj" />
   </ItemGroup>
 </Project>

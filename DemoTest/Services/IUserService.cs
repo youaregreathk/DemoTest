@@ -1,11 +1,17 @@
-﻿using System;
+﻿using DemoTest.Core;
+using System;
 using System.Collections.Generic;
-using DemoTest.Models;
+
 
 namespace DemoTest.Services
 {
     public interface IUserService
     {
-        List<User> getAllUsers();
+        List<User> getAllFakeUsers();
+
+        User saveUser(string name);
+
+        User getUserByUid(Guid uid);
+
     }
 }

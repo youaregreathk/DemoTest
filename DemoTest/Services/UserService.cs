@@ -1,23 +1,39 @@
-﻿using System;
+﻿using DemoTest.Core;
+using DemoTest.Data;
+using System;
 using System.Collections.Generic;
-using DemoTest.Models;
+
 
 namespace DemoTest.Services
 {
     public class UserService : IUserService
     {
-        public UserService()
+        private readonly IUserData userData;
+
+        public UserService(IUserData userData)
         {
+            this.userData = userData;
         }
 
-        public List<User> getAllUsers()
+        public List<User> getAllFakeUsers()
         {
             List<User> result = new List<User>
             {
-                new User{ Name = "Michael", Uid = "304497834"},
-                new User{ Name = "Alex", Uid = "304493834"},
+                new User{ Name = "Michael"},
+                new User{ Name = "Alex"},
             };
             return result;
+        }
+
+        public User saveUser(string name) {
+            var tmp = new User { Name = name };
+            return userData.Add(tmp);
+            
+        }
+
+        public User getUserByUid(Guid uid) {
+            var user = userData.GetByUid(uid);
+            return user;
         }
     }
 }

@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using DemoTest.Models;
+using DemoTest.Core;
+using DemoTest.RequestModels;
 using DemoTest.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace DemoTest.Controllers
 {
+    [Produces("application/json")]
     [ApiController]
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
@@ -47,12 +50,33 @@ namespace DemoTest.Controllers
             _userService = userService;
         }
 
+        /*
         [HttpGet]
         public async Task<List<User>> Get()
         {
+            string uid = "349454545";
+            _userService.saveUser(uid);
             return await Task.Run(() => _userService.getAllUsers());
 
         }
+        */
+
+        [HttpGet]
+        public User Get()
+        {
+            var user = _userService.saveUser("Alex");
+            User result = _userService.getUserByUid(user.Uid);
+            return result;
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public IActionResult Test([FromBody] UserRequest data)
+        {
+            var user = _userService.saveUser(data.Name);
+            return Ok(user);
+        }
+
     }
 
 }
