@@ -25,8 +25,9 @@ namespace DemoTest.Services
             return result;
         }
 
-        public User saveUser(string name) {
-            var tmp = new User { Name = name };
+        public User saveUser(string name, int score) {
+            Guid guid = Guid.NewGuid();
+            var tmp = new User { Name = name, Uid = guid, Score = score};
             return userData.Add(tmp);
             
         }

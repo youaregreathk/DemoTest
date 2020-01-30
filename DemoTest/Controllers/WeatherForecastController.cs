@@ -64,8 +64,9 @@ namespace DemoTest.Controllers
         [HttpGet]
         public User Get()
         {
-            var user = _userService.saveUser("Alex");
-            User result = _userService.getUserByUid(user.Uid);
+            //var user = _userService.saveUser("Alex");
+            Guid guid = new Guid("3297F0F2-35D3-4231-919D-1CFCF4035975");
+            User result = _userService.getUserByUid(guid);
             return result;
         }
 
@@ -73,7 +74,7 @@ namespace DemoTest.Controllers
         [AllowAnonymous]
         public IActionResult Test([FromBody] UserRequest data)
         {
-            var user = _userService.saveUser(data.Name);
+            var user = _userService.saveUser(data.Name, data.Score);
             return Ok(user);
         }
 

@@ -33,7 +33,7 @@ namespace DemoTest
         {
             services.AddDbContextPool<DemoTestDbContext>(options =>
            {
-               options.UseSqlServer(Configuration.GetConnectionString("DemoTestDb"));
+               options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
            });
 
             services.AddScoped<IUserData, SqlUserData>();

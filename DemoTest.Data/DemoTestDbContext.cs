@@ -14,6 +14,6 @@ namespace DemoTest.Data
             
         }
 
-        public DbSet<User> Users { get; set; }
+        public DbSet<User> user { get; set; }
     }
 }

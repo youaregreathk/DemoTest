@@ -18,6 +18,7 @@ namespace DemoTest.Data
         public User Add(User newUser)
         {
             db.Add(newUser);
+            Commit();
             return newUser;
         }
 
@@ -30,7 +31,7 @@ namespace DemoTest.Data
         {
             var user = GetByUid(uid);
             if (user != null) {
-                db.Users.Remove(user);
+                db.user.Remove(user);
             }
             return user;
         }
@@ -39,7 +40,7 @@ namespace DemoTest.Data
         {
             try
             {
-                return db.Users.Find(uid);
+                return db.user.Find(uid);
             }
             catch (Exception e) {
                 return new User { Name = "Error" };
@@ -48,7 +49,7 @@ namespace DemoTest.Data
 
         public IEnumerable<User> GetUserByName(string name)
         {
-            var query = from r in db.Users
+            var query = from r in db.user
                         where r.Name.StartsWith(name) || string.IsNullOrEmpty(name)
                         orderby r.Name
                         select r;
@@ -58,7 +59,7 @@ namespace DemoTest.Data
 
         public User Update(User updatedUser)
         {
-            var entity = db.Users.Attach(updatedUser);
+            var entity = db.user.Attach(updatedUser);
             entity.State = EntityState.Modified;
             return updatedUser;
         }

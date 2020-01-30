@@ -9,7 +9,7 @@ namespace DemoTest.Services
     {
         List<User> getAllFakeUsers();
 
-        User saveUser(string name);
+        User saveUser(string name, int score);
 
         User getUserByUid(Guid uid);
 
