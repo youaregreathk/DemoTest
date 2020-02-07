@@ -11,9 +11,21 @@ namespace DemoTest.Data
         public DemoTestDbContext(DbContextOptions<DemoTestDbContext> options) 
             : base(options)
         { 
-            
         }
 
-        public DbSet<User> user { get; set; }
+        public DbSet<User> Users{ get; set; }
+
+        public DbSet<UserMetadata> UserMetadata { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<User>().ToTable("user");
+            modelBuilder.Entity<UserMetadata>().ToTable("UserMetadata");
+
+            modelBuilder.Entity<User>()
+            .HasOne(a => a.UserMetadata)
+            .WithOne(a => a.User)
+            .HasForeignKey<User>(c => c.UserMetadataCorrelationId);
+        }
     }
 }

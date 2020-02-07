@@ -13,7 +13,7 @@ namespace DemoTest.Data
 
         User Update(User updatedUser);
 
-        User Add(User user);
+        User Add(User newUser, UserMetadata userMetadata);
 
         User Delete(Guid uid);
 

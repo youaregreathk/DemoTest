@@ -65,9 +65,10 @@ namespace DemoTest.Controllers
         public User Get()
         {
             //var user = _userService.saveUser("Alex");
-            Guid guid = new Guid("3297F0F2-35D3-4231-919D-1CFCF4035975");
-            User result = _userService.getUserByUid(guid);
-            return result;
+            //Guid guid = new Guid("3297F0F2-35D3-4231-919D-1CFCF4035975");
+            // User result = _userService.getUserByUid(guid);
+            //return result;
+            return _userService.createADemoUser();
         }
 
         [HttpPost]

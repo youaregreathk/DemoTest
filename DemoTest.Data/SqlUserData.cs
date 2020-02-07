@@ -15,8 +15,10 @@ namespace DemoTest.Data
             this.db = db;
         }
 
-        public User Add(User newUser)
+        public User Add(User newUser, UserMetadata userMetadata)
         {
+            newUser.UserMetadata = userMetadata;
+            
             db.Add(newUser);
             Commit();
             return newUser;
@@ -29,15 +31,20 @@ namespace DemoTest.Data
 
         public User Delete(Guid uid)
         {
+            /*
             var user = GetByUid(uid);
             if (user != null) {
                 db.user.Remove(user);
             }
+           
             return user;
+            */
+            return null;
         }
 
         public User GetByUid(Guid uid)
         {
+            /*
             try
             {
                 return db.user.Find(uid);
@@ -45,23 +52,30 @@ namespace DemoTest.Data
             catch (Exception e) {
                 return new User { Name = "Error" };
             }
+            */
+            return null;
         }
 
         public IEnumerable<User> GetUserByName(string name)
         {
-            var query = from r in db.user
-                        where r.Name.StartsWith(name) || string.IsNullOrEmpty(name)
-                        orderby r.Name
-                        select r;
-            return query;
-                
+            /*
+             var query = from r in db.user
+                         where r.Name.StartsWith(name) || string.IsNullOrEmpty(name)
+                         orderby r.Name
+                         select r;
+             return query;
+             */
+            return null;    
         }
 
         public User Update(User updatedUser)
         {
+            /*
             var entity = db.user.Attach(updatedUser);
             entity.State = EntityState.Modified;
             return updatedUser;
+            */
+            return null;
         }
     }
 }

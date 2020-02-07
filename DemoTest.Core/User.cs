@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Moq;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -9,17 +10,17 @@ namespace DemoTest.Core
     public class User
     {
         public User()
-        {
-
-        }
+        {}
 
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
-        public Guid Uid { get; set; }
+        public Guid Id { get; set; }
 
-        public string Name { get; set; }
+        public string Uid { get; set; }
 
-        public int Score { get; set; }
+        public Guid UserMetadataCorrelationId { get; set; }
+
+        public UserMetadata UserMetadata { get; set; }
 
     }
 }

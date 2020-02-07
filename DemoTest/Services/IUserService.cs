@@ -13,5 +13,6 @@ namespace DemoTest.Services
 
         User getUserByUid(Guid uid);
 
+        public User createADemoUser();
     }
 }
